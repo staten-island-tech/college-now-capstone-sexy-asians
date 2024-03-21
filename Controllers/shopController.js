@@ -1,3 +1,4 @@
+const user = require("../Models/user");
 exports.homePage = (req, res) => {
   const stores = ["dunkins", "tim hos", "starbucks"];
   try {
@@ -17,5 +18,15 @@ exports.authMiddleware = (req, res, next) => {
     next();
   } else {
     res.json("you need to check ur fucking brain");
+  }
+};
+
+exports.createShop = async (req, res) => {
+  try {
+    const shop = new user(req.body);
+    await shop.save();
+    res.json(shop);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };

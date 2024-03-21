@@ -16,5 +16,6 @@ router.get("/teacher/:name", (req, res) => {
     res.json(req.params.name);
   } catch (error) {}
 }); */
+router.post("/add", shopController.createShop);
 
 module.exports = router;
