@@ -21,7 +21,7 @@ exports.authMiddleware = (req, res, next) => {
   }
 };
 
-exports.createShop = async (req, res) => {
+exports.addUser = async (req, res) => {
   try {
     const shop = new user(req.body);
     await shop.save();
