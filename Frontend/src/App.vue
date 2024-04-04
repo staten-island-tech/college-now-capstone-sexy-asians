@@ -7,14 +7,12 @@ import { RouterLink, RouterView } from "vue-router";
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/signup">Sign Up</RouterLink>
       </nav>
     </div>
-
-    <h1>poop</h1>
   </header>
 
-  <RouterView />
+  <RouterView class="view" />
 </template>
 
 <style scoped>
@@ -47,5 +45,10 @@ nav a {
 }
 nav a:first-of-type {
   border: 0;
+}
+
+.view {
+  display: flex;
+  justify-content: center;
 }
 </style>
