@@ -4,7 +4,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import login from "../components/LogIn.vue";
 </script>
 
