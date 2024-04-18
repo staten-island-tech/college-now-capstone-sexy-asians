@@ -1,13 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+/* import Dashboard from "./views/Dashboard.vue"; */
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Explore</RouterLink>
-        <RouterLink to="/signup">Register</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/signup">Register/</RouterLink>
         <RouterLink to="/signup">Dashboard</RouterLink>
       </nav>
     </div>
@@ -18,8 +19,8 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  line-height: 5.5;
+  max-height: 300vh;
 }
 
 .logo {
@@ -39,17 +40,17 @@ nav a.router-link-exact-active {
 }
 
 nav a.router-link-exact-active:hover {
-  background-color: transparent;
+  background-color: 😃;
 }
 
-nav a {
+dash nav a {
   display: inline-block;
   padding: 2 5rem;
   border-left: 2px solid var(--color-border);
 }
 
 nav a:first-of-type {
-  border: ;
+  border: 0;
 }
 
 .view {
@@ -57,3 +58,4 @@ nav a:first-of-type {
   justify-content: center;
 }
 </style>
+

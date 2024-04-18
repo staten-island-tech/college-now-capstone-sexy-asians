@@ -14,10 +14,10 @@ function submit() {
       <div class="input"><label>Password</label> <input type="password" /></div>
 
       <div class="input">
-        <label for="password">Reenter Password</label> <input type="password" />
+        <label for="password">Comfirn your password </label> <input type="password" />
       </div>
 
-      <button>submit</button>
+      <button>Apply</button>
     </form>
   </main>
 </template>
