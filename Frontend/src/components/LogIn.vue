@@ -14,11 +14,11 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { onMounted, ref } from "vue";
 const userData = ref("");
 async function login() {
-  let res = await fetch("http://localhost:3000");
+  let res = await fetch("http://localhost:4000");
   let data = await res.json();
   userData.value = data;
   console.log(data);
