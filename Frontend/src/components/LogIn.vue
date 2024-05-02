@@ -1,26 +1,33 @@
-<script setup>
-function submit() {
-  console.log("poop");
-}
-</script>
-
 <template>
-  <main>
-    <form class="form" @click.prevent="submit">
-      <div class="input"><label>Username</label> <input type="text" /></div>
-
+  <div>
+    <form class="form" @click.prevent="login">
       <div class="input"><label>Email</label> <input type="email" /></div>
 
       <div class="input"><label>Password</label> <input type="password" /></div>
-
       <div class="input">
         <label for="password">Comfirn your password </label> <input type="password" />
       </div>
 
       <button>Apply</button>
+      <button>submit</button>
     </form>
-  </main>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+const userData = ref("");
+async function login() {
+  let res = await fetch("http://localhost:3000");
+  let data = await res.json();
+  userData.value = data;
+  console.log(data);
+}
+
+onMounted(() => {
+  login();
+});
+</script>
 
 <style scoped>
 .form {
