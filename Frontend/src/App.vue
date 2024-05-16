@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-/* import Dashboard from "./views/Dashboard.vue"; */
+/* update routing */
 </script>
 
 <template>
