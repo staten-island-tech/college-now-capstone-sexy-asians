@@ -4,6 +4,7 @@
       <router-link to="/" class="nav-brand">Home</router-link>
       <nav class="nav-menu">
         <router-link to="/login" class="nav-item">Login</router-link>
+      </nav>
     </div>
   </header>
 </template>
@@ -46,7 +47,7 @@
   }
 
   .nav-menu {
-    flex-direction: column; 
+    flex-direction: column;   
     align-items: center;
     width: 100%; 
   }
