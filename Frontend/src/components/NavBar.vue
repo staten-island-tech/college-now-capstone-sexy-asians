@@ -10,10 +10,16 @@
 </template>
 
 <style scoped>
+
+/* TOP */
 .nav-bar {
   background-color: #000;
   color: #fff;
   width: 100%;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000; 
 }
 
 .nav-container {
