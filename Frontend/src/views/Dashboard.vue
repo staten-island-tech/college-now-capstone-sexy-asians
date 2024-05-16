@@ -20,3 +20,14 @@ export default {
 
 # css, WIP, add in google icons later
 
+<style scoped>
+.dashboard-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  color: #333;
+}
+</style>
