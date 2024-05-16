@@ -2,8 +2,8 @@
     <div>
       <NavBar />
       <main class="dashboard-container">
-        <h1 class="dashboard-title">TurboLearn</h1>
-        <p class="dashboard-description">The only platform you need to turbo boost your learning.</p>
+        <h1 class="dashboard-title">StudyMaxx</h1>
+        <p class="dashboard-description">Podoromo. Studying. Tips. The ultimate super platform! </p>
       </main>
     </div>
   </template>
