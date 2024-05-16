@@ -43,22 +43,4 @@ export default {
   color: #ccc;
 }
 
-.dashboard-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, #6FB1FC, #4364F7, #6FB1FC);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  z-index: -1;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 </style>
