@@ -11,15 +11,16 @@
 
 <style scoped>
 
-/* TOP */
+/* TOP and shadow, add in icons later*/
 .nav-bar {
-  background-color: #000;
+  background-color: #a7c7e7;
   color: #fff;
   width: 100%;
   position: fixed; 
   top: 0;
   left: 0;
   z-index: 1000; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .nav-container {
@@ -36,7 +37,7 @@
 
 .nav-brand,
 .nav-item {
-  color: #fff;
+  color: #000;
   text-decoration: none;
   padding: 0.5rem;
   display: block; 
