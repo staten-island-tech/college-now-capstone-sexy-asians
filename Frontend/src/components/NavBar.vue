@@ -13,6 +13,7 @@
 .nav-bar {
   background-color: #000;
   color: #fff;
+  width: 100%;
 }
 
 .nav-container {
