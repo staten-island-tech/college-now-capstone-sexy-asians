@@ -1,21 +1,61 @@
 <template>
   <div>
-    <form class="form" @click.prevent="login">
-      <div class="input"><label>Email</label> <input type="email" /></div>
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
 
-      <div class="input"><label>Password</label> <input type="password" /></div>
-      <div class="input">
-        <label for="password">Comfirn your password </label> <input type="password" />
-      </div>
+    <div class="front">
+      <form @click.prevent="login">
+        <h3>Login Here</h3>
 
-      <button>Apply</button>
-      <button>submit</button>
-    </form>
+        <div>
+          <label for="username">Email</label>
+          <input type="text" placeholder="Email" id="username" />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" placeholder="Password" id="password" />
+        </div>
+
+        <div>
+          <button>Log In</button>
+          <div class="link">Don't have an account? <a href="">Signup</a></div>
+        </div>
+      </form>
+    </div>
+
+    <div class="back">
+      <form @click.prevent="signup">
+        <h3>Signup Here</h3>
+
+        <div>
+          <label for="username">Email</label>
+          <input type="text" placeholder="Email" id="username" />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" placeholder="Password" id="password" />
+        </div>
+
+        <div>
+          <label for="password">Retype Password</label>
+          <input type="password" placeholder="Password" id="password" />
+        </div>
+
+        <div>
+          <button>Log In</button>
+          <div class="link">Already have an account? <a href="">Login</a></div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 const userData = ref("");
 async function login() {
   let res = await fetch("http://localhost:4000");
@@ -24,23 +64,116 @@ async function login() {
   console.log(data);
 }
 
-onMounted(() => {
-  login();
-});
+async function signup() {
+  let res = await fetch("http://localhost:4000");
+  let data = await res.json();
+  userData.value = data;
+  console.log(data);
+}
 </script>
 
 <style scoped>
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20rem;
-  padding: 2rem;
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #080710;
 }
 
-.input {
+/* shapes */
+.background {
+  width: 430px;
+  height: 520px;
+  position: absolute;
+}
+.background .shape {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+}
+.shape:first-child {
+  background: linear-gradient(#1845ad, #23a2f6);
+  left: -80px;
+  top: -80px;
+}
+.shape:last-child {
+  background: linear-gradient(to right, #ff512f, #f09819);
+  right: -30px;
+  bottom: -80px;
+}
+
+/* login/signup form */
+form {
+  height: 520px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 30px 35px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  justify-content: space-around;
+}
+form * {
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+::placeholder {
+  color: #e5e5e5;
+}
+button {
+  margin-top: 30px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
 }
 </style>

@@ -1,23 +1,20 @@
 <template>
-    <div>
-      <NavBar />
-      <main class="dashboard-container">
-        <h1 class="dashboard-title">StudyMaxx</h1>
-        <p class="dashboard-description">Podoromo. Studying. Tips. The ultimate super platform! </p>
-      </main>
-    </div>
-  </template>
+  <div>
+    <main class="dashboard-container">
+      <h1 class="dashboard-title">StudyMaxx</h1>
+      <p class="dashboard-description">
+        Podoromo. Studying. Tips. The ultimate super platform!
+      </p>
+    </main>
+  </div>
+</template>
+
 <script>
-import NavBar from '@/components/NavBar.vue';
-
 export default {
-  name: 'Dashboard',
-  components: {
-    NavBar
-  }
-}
+  name: "DashboardView",
+  components: {},
+};
 </script>
-
 
 <style scoped>
 .dashboard-container {
@@ -32,14 +29,14 @@ export default {
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(45deg, #a7c7e7, #e0f7fa); 
+  background: linear-gradient(45deg, #a7c7e7, #e0f7fa);
   animation: fadeIn 2s ease-in;
 }
 
 .dashboard-title {
-  font-size: 6rem; 
+  font-size: 6rem;
   margin-bottom: 1rem;
-  color: #9b7a7a
+  color: #9b7a7a;
 }
 
 .dashboard-description {
@@ -56,7 +53,8 @@ export default {
   }
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;

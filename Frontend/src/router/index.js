@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import IntroLoader from "../components/IntroLoader.vue"
+import IntroLoader from "../components/IntroLoader.vue";
 import HomeView from "../views/HomeView.vue";
-import Dashboard from "@/views/Dashboard.vue";
+import Dashboard from "../views/DashboardView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +12,7 @@ const router = createRouter({
       component: IntroLoader,
     },
     {
-      path: "/Dashboard",
+      path: "/DashboardView",
       name: "Dashboard",
       component: Dashboard,
     },
@@ -25,7 +25,7 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: () => import("../views/LoginView.vue"),
-    }
+    },
   ],
 });
 

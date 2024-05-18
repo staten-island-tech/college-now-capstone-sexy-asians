@@ -10,17 +10,16 @@
 </template>
 
 <style scoped>
-
 /* TOP and shadow, add in icons later*/
 .nav-bar {
   background-color: #a7c7e7;
   color: #fff;
   width: 100%;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -32,7 +31,7 @@
 
 .nav-menu {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .nav-brand,
@@ -40,45 +39,10 @@
   color: #000;
   text-decoration: none;
   padding: 0.5rem;
-  display: block; 
+  display: block;
 }
 
 .nav-item:hover {
   text-decoration: underline;
-}
-
-
-@media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column; 
-    padding: 0.5rem;
-  }
-
-  .nav-menu {
-    flex-direction: column;   
-    align-items: center;
-    width: 100%; 
-  }
-
-  .nav-item {
-    text-align: center; 
-    width: 100%; 
-    padding: 0.8rem; 
-  }
-
-  .nav-brand {
-    margin-bottom: 0.5rem;
-  }
-}
-
-
-@media (min-width: 769px) {
-  .nav-menu {
-    justify-content: flex-end; 
-  }
-
-  .nav-item:not(:last-child) {
-    margin-right: 1rem; 
-  }
 }
 </style>
