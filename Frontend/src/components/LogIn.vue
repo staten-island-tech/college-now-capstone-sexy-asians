@@ -6,12 +6,12 @@
     </div>
 
     <div class="front">
-      <form @click.prevent="login">
+      <form>
         <h3>Login Here</h3>
 
         <div>
-          <label for="username">Email</label>
-          <input type="text" placeholder="Email" id="username" />
+          <label for="email">Email</label>
+          <input type="email" placeholder="Email" id="email1" />
         </div>
 
         <div>
@@ -20,7 +20,7 @@
         </div>
 
         <div>
-          <button>Log in</button>
+          <button @click.prevent="login(username, password)">Log in</button>
           <div class="link" @click.prevent="flip">
             Don't have an account? Signup
           </div>
@@ -29,26 +29,26 @@
     </div>
 
     <div class="back">
-      <form @click.prevent="signup">
+      <form>
         <h3>Signup Here</h3>
 
         <div>
-          <label for="username">Email</label>
-          <input type="text" placeholder="Email" id="username" />
+          <label for="email">Email</label>
+          <input type="email" placeholder="Email" id="email2" />
         </div>
 
         <div>
           <label for="password">Password</label>
-          <input type="password" placeholder="Password" id="password" />
+          <input type="password" placeholder="Password" id="password1" />
         </div>
 
         <div>
           <label for="password">Retype Password</label>
-          <input type="password" placeholder="Password" id="password" />
+          <input type="password" placeholder="Retype Password" id="password2" />
         </div>
 
         <div>
-          <button>Sign up</button>
+          <button @click.prevent="signup(email, password)">Sign up</button>
           <div class="link" @click.prevent="flip">
             Already have an account? Login
           </div>
@@ -60,19 +60,60 @@
 
 <script setup>
 import { ref } from "vue";
+
 const userData = ref("");
 async function login() {
-  let res = await fetch("http://localhost:4000");
-  let data = await res.json();
-  userData.value = data;
-  console.log(data);
-}
+  try {
+    const req = {
+      email: document.getElementById("email1"),
+      password: document.getElementById("password"),
+    };
+    const email = ref(req.email);
+    const password = ref(req.password);
 
-async function signup() {
-  let res = await fetch("http://localhost:4000");
-  let data = await res.json();
-  userData.value = data;
-  console.log(data);
+    console.log(password);
+
+    let res = await fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    let user = await res.json();
+    userData.value = user;
+    console.log(userData);
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function signup(email, password) {
+  const password1 = document.querySelector(".password1");
+  const password2 = document.querySelector(".password2");
+  if (password1 !== password2) {
+    alert("Passwords do not match");
+  } else {
+    try {
+      let res = await fetch("http://localhost:4000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.value,
+          password: password.value,
+        }),
+      });
+      let user = await res.json();
+      userData.value = user;
+      console.log(userData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 function flip() {
@@ -184,6 +225,7 @@ button {
 }
 
 .all {
+  margin-top: 13rem;
   perspective: 1000px;
   transition: transform 0.6s;
   transform-style: preserve-3d;

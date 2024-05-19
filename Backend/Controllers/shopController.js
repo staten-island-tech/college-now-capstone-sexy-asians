@@ -14,11 +14,12 @@ exports.middlewareSample = (req, res, next) => {
 };
 
 exports.authMiddleware = (req, res, next) => {
-  if (req.body.user) {
+  /* if (req.body.user) {
     next();
   } else {
     res.json("you need to check ur fucking brain");
-  }
+  } */
+  res.json();
 };
 
 exports.addUser = async (req, res) => {

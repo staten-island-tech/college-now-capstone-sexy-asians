@@ -6,7 +6,9 @@ const routes = require("./Routes/index");
 const cors = require("cors");
 let corsOptions = {
   origin: "*",
+  optionsSuccessStatus: 200,
 };
+app.use(cors(corsOptions));
 
 //takes the raw requests and turns them into usable properties on req.body
 app.use(express.json());

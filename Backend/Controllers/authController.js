@@ -1,4 +1,4 @@
-const user = require("../Models/user");
+const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "variables.env" });
@@ -15,12 +15,11 @@ const generateToken = async function (user) {
 };
 
 exports.register = async function (req, res) {
-  if (!req.body.username || !req.body.password) {
-    res.json({ success: false, msg: "Please pass username and password." });
+  if (!req.body.email || !req.body.password) {
+    res.json({ success: false, msg: "Please pass email and password." });
   } else {
     console.log(req.body.password);
-    let newUser = new signup({
-      username: req.body.username,
+    let newUser = new user({
       email: req.body.email,
       password: req.body.password,
     });
@@ -36,11 +35,11 @@ exports.register = async function (req, res) {
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async function (req, res) {
   try {
-    let username = req.body.username;
+    let email = req.body.email;
     let password = req.body.password;
-    const user = await user.findOne({ username });
+    const user = await User.findOne({ email });
 
     if (!user) {
       throw new Error("Unable to login");
@@ -55,7 +54,7 @@ exports.login = async (req, res) => {
     res.send({ user, token });
   } catch (error) {
     console.log(error);
-    res.status(400).send("user not found");
+    res.json("user not found");
   }
 };
 
