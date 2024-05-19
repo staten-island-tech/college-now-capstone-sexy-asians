@@ -14,18 +14,20 @@ const generateToken = async function (user) {
   return token;
 };
 
-exports.register = async function (req, res) {
+exports.register = async (req, res) => {
   if (!req.body.email || !req.body.password) {
+    console.log(req.body.email);
+    console.log(req.body.password);
     res.json({ success: false, msg: "Please pass email and password." });
   } else {
-    console.log(req.body.password);
-    let newUser = new user({
+    console.log(req.body.email);
+    let newUser = new User({
       email: req.body.email,
       password: req.body.password,
     });
     const token = await generateToken(newUser);
-    // save the user
-    await newUser.save();
+
+    await newUser.save(); // save the user
     res.json({
       success: true,
       msg: "Successful created new user.",

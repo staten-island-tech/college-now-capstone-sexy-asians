@@ -58,7 +58,7 @@
 
         <div>
           <input
-            @submit.prevent="signup"
+            @click.prevent="signup"
             type="submit"
             value="Sign up"
             class="login"
@@ -75,7 +75,7 @@
 <script setup>
 import { ref } from "vue";
 
-const userData = ref("");
+const userData = ref();
 async function login() {
   try {
     const req = {
@@ -85,31 +85,37 @@ async function login() {
     const email = ref(req.email);
     const password = ref(req.password);
 
-    console.log(email.value);
-
     let res = await fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: email.value,
+        password: password.value,
       }),
     });
     let user = await res.json();
     userData.value = user;
-    console.log(userData);
+    console.log(userData.value.user);
   } catch (error) {
     console.log(error);
   }
 }
-async function signup(email, password) {
-  const password1 = document.querySelector(".password1");
-  const password2 = document.querySelector(".password2");
-  if (password1 !== password2) {
+async function signup() {
+  const req = {
+    email: document.querySelector(".email2").value,
+    password: document.querySelector(".password1").value,
+    passwordConfirm: document.querySelector(".password2").value,
+  };
+  const email = ref(req.email);
+  const password = ref(req.password);
+  const confirm = ref(req.passwordConfirm);
+
+  if (password.value !== confirm.value) {
     alert("Passwords do not match");
   } else {
+    console.log(email, password);
     try {
       let res = await fetch("http://localhost:4000/register", {
         method: "POST",
