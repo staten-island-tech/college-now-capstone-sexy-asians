@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <main class="dashboard-container">
-      <h1 class="dashboard-title">StudyMaxx</h1>
-      <p class="dashboard-description">
-        Podoromo. Studying. Tips. The ultimate super platform!
-      </p>
-    </main>
+  <div class="dashboard-container">
+    <h1 class="dashboard-title">Header</h1>
+    <p class="dashboard-description">
+      Description Description Description Description Description
+    </p>
   </div>
 </template>
 

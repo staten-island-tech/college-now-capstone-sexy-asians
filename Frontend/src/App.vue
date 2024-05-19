@@ -20,6 +20,5 @@ import NavBar from "@/components/NavBar.vue";
   height: 100%;
   display: flex;
   justify-content: center;
-  padding: 10rem 0 0 0;
 }
 </style>
