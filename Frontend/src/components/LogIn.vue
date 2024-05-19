@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="all">
     <div class="background">
       <div class="shape"></div>
       <div class="shape"></div>
@@ -20,8 +20,10 @@
         </div>
 
         <div>
-          <button>Log In</button>
-          <div class="link">Don't have an account? <a href="">Signup</a></div>
+          <button>Log in</button>
+          <div class="link" @click.prevent="flip">
+            Don't have an account? Signup
+          </div>
         </div>
       </form>
     </div>
@@ -46,8 +48,10 @@
         </div>
 
         <div>
-          <button>Log In</button>
-          <div class="link">Already have an account? <a href="">Login</a></div>
+          <button>Sign up</button>
+          <div class="link" @click.prevent="flip">
+            Already have an account? Login
+          </div>
         </div>
       </form>
     </div>
@@ -69,6 +73,10 @@ async function signup() {
   let data = await res.json();
   userData.value = data;
   console.log(data);
+}
+
+function flip() {
+  document.querySelector(".all").classList.toggle("flip");
 }
 </script>
 
@@ -112,8 +120,6 @@ form {
   height: 520px;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.13);
-  position: absolute;
-
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -175,5 +181,24 @@ button {
   font-size: 14px;
   font-weight: 500;
   color: #ffffff;
+}
+
+.all {
+  perspective: 1000px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.front,
+.back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0px;
+}
+.all.flip {
+  transform: rotateY(180deg);
 }
 </style>
