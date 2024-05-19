@@ -11,12 +11,10 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import PokemonCard from "../components/PokemonCard.vue";
+import PokemonCard from "../components/PokeCard.vue";
 const pokemon = ref("");
 async function getPokemon() {
-  let res = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=151&offset=0&quot"
-  );
+  let res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0");
   let data = await res.json();
   pokemon.value = data.results;
 }

@@ -19,6 +19,7 @@ const userSchema = new Schema({
       },
     },
   ],
+  collection: []
 });
 userSchema.pre("save", async function (next) {
   const user = this;
