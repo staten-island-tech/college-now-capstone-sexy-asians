@@ -10,17 +10,22 @@
         <h3>Login Here</h3>
 
         <div>
-          <label for="email">Email</label>
-          <input type="email" placeholder="Email" id="email1" />
+          <label>Email</label>
+          <input type="email" placeholder="Email" class="email1" />
         </div>
 
         <div>
-          <label for="password">Password</label>
-          <input type="password" placeholder="Password" id="password" />
+          <label>Password</label>
+          <input type="password" placeholder="Password" class="password" />
         </div>
 
         <div>
-          <button @click.prevent="login(username, password)">Log in</button>
+          <input
+            @click.prevent="login"
+            type="submit"
+            value="Log in"
+            class="login"
+          />
           <div class="link" @click.prevent="flip">
             Don't have an account? Signup
           </div>
@@ -33,22 +38,31 @@
         <h3>Signup Here</h3>
 
         <div>
-          <label for="email">Email</label>
-          <input type="email" placeholder="Email" id="email2" />
+          <label>Email</label>
+          <input type="email" placeholder="Email" class="email2" />
         </div>
 
         <div>
-          <label for="password">Password</label>
-          <input type="password" placeholder="Password" id="password1" />
+          <label>Password</label>
+          <input type="password" placeholder="Password" class="password1" />
         </div>
 
         <div>
-          <label for="password">Retype Password</label>
-          <input type="password" placeholder="Retype Password" id="password2" />
+          <label>Retype Password</label>
+          <input
+            type="password"
+            placeholder="Retype Password"
+            class="password2"
+          />
         </div>
 
         <div>
-          <button @click.prevent="signup(email, password)">Sign up</button>
+          <input
+            @submit.prevent="signup"
+            type="submit"
+            value="Sign up"
+            class="login"
+          />
           <div class="link" @click.prevent="flip">
             Already have an account? Login
           </div>
@@ -65,13 +79,13 @@ const userData = ref("");
 async function login() {
   try {
     const req = {
-      email: document.getElementById("email1"),
-      password: document.getElementById("password"),
+      email: document.querySelector(".email1").value,
+      password: document.querySelector(".password").value,
     };
     const email = ref(req.email);
     const password = ref(req.password);
 
-    console.log(password);
+    console.log(email.value);
 
     let res = await fetch("http://localhost:4000/login", {
       method: "POST",
@@ -204,7 +218,7 @@ input {
 ::placeholder {
   color: #e5e5e5;
 }
-button {
+.login {
   margin-top: 30px;
   width: 100%;
   background-color: #ffffff;

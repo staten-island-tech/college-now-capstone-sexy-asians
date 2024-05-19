@@ -35,7 +35,7 @@ exports.register = async function (req, res) {
   }
 };
 
-exports.login = async function (req, res) {
+exports.login = async (req, res) => {
   try {
     let email = req.body.email;
     let password = req.body.password;
@@ -51,7 +51,7 @@ exports.login = async function (req, res) {
       throw new Error("Unable to login");
     }
 
-    res.send({ user, token });
+    res.json({ user, token });
   } catch (error) {
     console.log(error);
     res.json("user not found");
