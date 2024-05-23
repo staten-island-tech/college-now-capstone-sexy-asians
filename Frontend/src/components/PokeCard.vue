@@ -1,8 +1,10 @@
 <template>
-  <router-link :to="pkmnPath" class="card">
+  <div class="card">
     <h3>{{ id }}</h3>
     <h2>{{ pokemon.name }}</h2>
-  </router-link>
+    <br />
+    <router-link :to="pkmnPath">View Details</router-link>
+  </div>
 </template>
 
 <script setup>
@@ -18,9 +20,10 @@ const pkmnPath = computed(() => {
 
 <style scoped>
 .card {
-  width: 28%;
-  height: 500px;
+  width: 20rem;
+  height: 200px;
   background-color: aliceblue;
+  color: green;
   margin: 30px 0;
   display: flex;
   flex-direction: column;
