@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "../views/LoginView.vue";
-import IntroLoader from "../components/IntroLoader.vue";
 import Dashboard from "../views/DashboardView.vue";
 import Catalog from "../views/CatalogView.vue";
 import PokemonData from "@/views/PokemonData.vue";
