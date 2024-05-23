@@ -1,9 +1,16 @@
 <template>
   <div class="dashboard-container">
-    <h1 class="dashboard-title">Header</h1>
+    <h1 class="dashboard-title">Hello. This is PokeGacha.</h1>
     <p class="dashboard-description">
-      Description Description Description Description Description
+      Discover, collect, and gamble your favorite Pokémon...with a gacha story.
     </p>
+
+    <div class="button-container">
+      <router-link to="/catalog" class="nav-button">The Catalog</router-link>
+      <router-link to="/user/collection" class="nav-button"
+        >My Pokémons</router-link
+      >
+    </div>
   </div>
 </template>
 
