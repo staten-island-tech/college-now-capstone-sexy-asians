@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <div>{{ monster.name }}</div>
-    <h2>{{ monster.id }}</h2>
+    <h1>{{ monster.name }}</h1>
     <img :src="monster.sprites?.front_default" alt="monster" />
+    <p>Height: {{ monster.height }}</p>
+    <p>Weight: {{ monster.weight }}</p>
+    <p>Base Experience: {{ monster.base_experience }}</p>
   </div>
 </template>
 
@@ -23,6 +25,17 @@ onMounted(() => {
 
 <style scoped>
 .container {
+  width: 25rem;
   margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  background-color: white;
+}
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 </style>
