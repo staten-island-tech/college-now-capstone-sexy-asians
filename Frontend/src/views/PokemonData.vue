@@ -4,7 +4,14 @@
     <img :src="monster.sprites?.front_default" alt="monster" />
     <p>Height: {{ monster.height }}</p>
     <p>Weight: {{ monster.weight }}</p>
-    <p>Base Experience: {{ monster.base_experience }}</p>
+    <div>
+      <h3>Abilities</h3>
+      <ul>
+        <li v-for="(item, index) in monster" :key="index">
+          {{ item.abilities }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -29,6 +36,7 @@ onMounted(() => {
   margin: 60px auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: black;
   background-color: white;

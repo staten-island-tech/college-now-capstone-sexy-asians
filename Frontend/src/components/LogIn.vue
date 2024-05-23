@@ -74,7 +74,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { auth } from "@/stores/auth";
 
+const authStore = auth();
 const userData = ref();
 async function login() {
   try {
@@ -97,7 +99,12 @@ async function login() {
     });
     let user = await res.json();
     userData.value = user;
-    console.log(userData.value.user);
+    authStore.$patch({
+      id: userData.value.user._id,
+      email: userData.value.user.email,
+      token: userData.value.token,
+      isAuthenticated: true,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -129,7 +136,12 @@ async function signup() {
       });
       let user = await res.json();
       userData.value = user;
-      console.log(userData);
+      authStore.$patch({
+        id: userData.value.user._id,
+        email: userData.value.user.email,
+        token: userData.value.token,
+        isAuthenticated: true,
+      });
     } catch (error) {
       console.log(error);
     }

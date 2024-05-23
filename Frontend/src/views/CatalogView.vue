@@ -13,13 +13,13 @@
 import { ref, onMounted } from "vue";
 import PokeCard from "../components/PokeCard.vue";
 const pokemon = ref();
-async function getPokemon() {
+async function loadCatalog() {
   let res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0");
   let data = await res.json();
   pokemon.value = data.results;
 }
 onMounted(() => {
-  getPokemon();
+  loadCatalog();
 });
 </script>
 
