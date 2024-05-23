@@ -1,4 +1,4 @@
-const user = require("../Models/user");
+const User = require("../Models/user");
 exports.homePage = (req, res) => {
   const stores = ["dunkins", "tim hos", "starbucks"];
   try {
@@ -24,5 +24,16 @@ exports.addUser = async (req, res) => {
     res.json("shop");
   } catch (error) {
     res.status(500).json(error);
+  }
+};
+
+exports.getCollection = async (req, res) => {
+  try {
+    let email = req.body.email;
+    const user = await User.findOne({ email });
+
+    res.json(user.collection);
+  } catch (error) {
+    console.log(error);
   }
 };
