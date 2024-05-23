@@ -8,7 +8,7 @@
 
       <nav class="right">
         <router-link v-if="!login" to="/login" class="login">Login</router-link>
-        <router-link v-if="login" to="/user">Profile</router-link>
+        <router-link v-if="login" to="/user" class="login">Profile</router-link>
       </nav>
     </div>
   </header>
@@ -22,6 +22,8 @@ const login = ref(false);
 const authStore = auth();
 if (authStore.isAuthenticated === true) {
   login.value = true;
+} else {
+  login.value = false;
 }
 </script>
 

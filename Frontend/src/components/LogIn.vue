@@ -75,6 +75,7 @@
 <script setup>
 import { ref } from "vue";
 import { auth } from "@/stores/auth";
+import router from "@/router";
 
 const authStore = auth();
 const userData = ref();
@@ -106,6 +107,7 @@ async function login() {
       token: userData.value.token,
       isAuthenticated: true,
     });
+    router.push({ path: "/catalog" });
   } catch (error) {
     console.log(error);
   }
