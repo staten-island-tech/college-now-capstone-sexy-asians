@@ -15,11 +15,6 @@ const router = createRouter({
     },
     {
       path: "/",
-      name: "IntroLoader",
-      component: IntroLoader,
-    },
-    {
-      path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
     },
