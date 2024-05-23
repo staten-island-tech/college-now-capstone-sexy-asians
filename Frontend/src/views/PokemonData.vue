@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <h1>{{ monster.name }}</h1>
-    <img :src="monster.sprites?.front_default" alt="monster" />
+    <h1>{{ pkmn.name }}</h1>
+    <img :src="pkmn.sprites?.front_default" alt="pkmn" />
     <div class="middle">
-      <p>Height: {{ monster.height }}</p>
-      <p>Weight: {{ monster.weight }}</p>
+      <p>Height: {{ pkmn.height }}</p>
+      <p>Weight: {{ pkmn.weight }}</p>
     </div>
     <div class="bottom">
       <div class="abilities">
         <h3>Abilities</h3>
         <ul>
-          <li v-for="(item, index) in monster.abilities" :key="index">
+          <li v-for="(item, index) in pkmn.abilities" :key="index">
             <p>{{ item.ability.name }}</p>
           </li>
         </ul>
@@ -18,7 +18,7 @@
       <div class="moves">
         <h3>Moves</h3>
         <ul>
-          <li v-for="(item, index) in monster.moves" :key="index">
+          <li v-for="(item, index) in pkmn.moves" :key="index">
             <p>{{ item.move.name }}</p>
           </li>
         </ul>
@@ -31,11 +31,11 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
-let monster = ref("");
+let pkmn = ref("");
 async function getData() {
   let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${route.params.id}`);
   let data = await res.json();
-  monster.value = data;
+  pkmn.value = data;
 }
 onMounted(() => {
   getData();
