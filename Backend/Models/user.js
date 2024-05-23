@@ -12,6 +12,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  profile: {
+    type: String,
+  },
   tokens: [
     {
       token: {
@@ -19,7 +22,7 @@ const userSchema = new Schema({
       },
     },
   ],
-  collection: []
+  collection: [],
 });
 userSchema.pre("save", async function (next) {
   const user = this;

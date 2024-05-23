@@ -102,6 +102,7 @@ async function login() {
     authStore.$patch({
       id: userData.value.user._id,
       email: userData.value.user.email,
+      profile: userData.value.user.profile,
       token: userData.value.token,
       isAuthenticated: true,
     });
@@ -139,6 +140,7 @@ async function signup() {
       authStore.$patch({
         id: userData.value.user._id,
         email: userData.value.user.email,
+        profile: userData.value.user.profile,
         token: userData.value.token,
         isAuthenticated: true,
       });

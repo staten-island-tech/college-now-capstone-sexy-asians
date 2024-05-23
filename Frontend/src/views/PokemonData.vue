@@ -2,15 +2,27 @@
   <div class="container">
     <h1>{{ monster.name }}</h1>
     <img :src="monster.sprites?.front_default" alt="monster" />
-    <p>Height: {{ monster.height }}</p>
-    <p>Weight: {{ monster.weight }}</p>
-    <div>
-      <h3>Abilities</h3>
-      <ul>
-        <li v-for="(item, index) in monster" :key="index">
-          {{ item.abilities }}
-        </li>
-      </ul>
+    <div class="middle">
+      <p>Height: {{ monster.height }}</p>
+      <p>Weight: {{ monster.weight }}</p>
+    </div>
+    <div class="bottom">
+      <div class="abilities">
+        <h3>Abilities</h3>
+        <ul>
+          <li v-for="(item, index) in monster.abilities" :key="index">
+            <p>{{ item.ability.name }}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="moves">
+        <h3>Moves</h3>
+        <ul>
+          <li v-for="(item, index) in monster.moves" :key="index">
+            <p>{{ item.move.name }}</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -33,17 +45,44 @@ onMounted(() => {
 <style scoped>
 .container {
   width: 25rem;
-  margin: 60px auto;
+  margin: 120px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: black;
   background-color: white;
+  text-transform: uppercase;
 }
 img {
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+.middle {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.bottom {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.abilities {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+.moves {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
 }
 </style>

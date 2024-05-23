@@ -3,6 +3,8 @@ import LoginView from "../views/LoginView.vue";
 import Dashboard from "../views/DashboardView.vue";
 import Catalog from "../views/CatalogView.vue";
 import PokemonData from "@/views/PokemonData.vue";
+import User from "@/views/UserView.vue";
+import Collection from "@/views/CollectionView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +28,16 @@ const router = createRouter({
       path: "/pkmn/:id",
       name: "pkmn",
       component: PokemonData,
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: User,
+    },
+    {
+      path: "/user/collection",
+      name: "collection",
+      component: Collection,
     },
   ],
 });

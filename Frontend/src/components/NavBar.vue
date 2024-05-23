@@ -1,13 +1,29 @@
 <template>
   <header class="nav-bar">
     <div class="nav-container">
-      <router-link to="/" class="nav-brand">PokeGacha</router-link>
-      <nav class="nav-menu">
-        <router-link to="/login" class="nav-item">Login</router-link>
+      <div class="left">
+        <router-link to="/" class="brand">PokeGacha</router-link>
+        <router-link to="/catalog" class="nav">Catalog</router-link>
+      </div>
+
+      <nav class="right">
+        <router-link v-if="!login" to="/login" class="login">Login</router-link>
+        <router-link v-if="login" to="/user">Profile</router-link>
       </nav>
     </div>
   </header>
 </template>
+
+<script setup>
+import { ref } from "vue";
+import { auth } from "@/stores/auth";
+
+const login = ref(false);
+const authStore = auth();
+if (authStore.isAuthenticated === true) {
+  login.value = true;
+}
+</script>
 
 <style scoped>
 /* TOP and shadow, add in icons later*/
@@ -26,23 +42,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
 }
-
-.nav-menu {
-  display: flex;
-  gap: 10px;
+.brand {
+  color: #000;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding-right: 1rem;
+  border-right: 1px grey solid;
 }
-
-.nav-brand,
-.nav-item {
+.nav,
+.login {
   color: #000;
   text-decoration: none;
   padding: 0.5rem;
-  display: block;
-}
-
-.nav-item:hover {
-  text-decoration: underline;
 }
 </style>
