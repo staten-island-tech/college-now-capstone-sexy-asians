@@ -4,7 +4,7 @@ const authController = require("../Controllers/authController");
 const shopController = require("../Controllers/shopController");
 
 router.post("/login", authController.login, authController.authCheck);
-router.post("/register", authController.register);
+router.post("/register", authController.register, authController.authCheck);
 router.get(
   "/getCollection",
   authController.authCheck,

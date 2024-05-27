@@ -17,12 +17,11 @@
     <div v-else>
       <p class="empty-message">
         You got no pokemon in your box. Please go to the catalog to scout some
-        pokemons....or do the story for SPECIAL pokemons :D
+        pokemons.
       </p>
     </div>
   </div>
 </template>
-
 
 <script>
 export default {

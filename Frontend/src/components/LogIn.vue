@@ -78,7 +78,6 @@ import { auth } from "@/stores/auth";
 import router from "@/router";
 
 const authStore = auth();
-const userData = ref();
 async function login() {
   try {
     const req = {
@@ -98,16 +97,15 @@ async function login() {
         password: password.value,
       }),
     });
-    let user = await res.json();
-    userData.value = user;
+    let user = ref(await res.json());
     authStore.$patch({
-      id: userData.value.user._id,
-      email: userData.value.user.email,
-      profile: userData.value.user.profile,
-      token: userData.value.token,
+      id: user.value.user._id,
+      email: user.value.user.email,
+      profile: user.value.user.profile,
+      token: user.value.token,
       isAuthenticated: true,
     });
-    router.push({ path: "/catalog" });
+    router.push({ path: `/catalog` });
   } catch (error) {
     console.log(error);
   }
@@ -127,25 +125,30 @@ async function signup() {
   } else {
     console.log(email, password);
     try {
-      let res = await fetch("http://localhost:4000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      let res = await fetch(
+        "http://localhost:4000/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email.value,
+            password: password.value,
+          }),
         },
-        body: JSON.stringify({
-          email: email.value,
-          password: password.value,
-        }),
-      });
-      let user = await res.json();
-      userData.value = user;
+        console.log("1")
+      );
+      let user = ref(await res.json());
+      console.log(user.value);
       authStore.$patch({
-        id: userData.value.user._id,
-        email: userData.value.user.email,
-        profile: userData.value.user.profile,
-        token: userData.value.token,
+        id: user.value.user._id,
+        email: user.value.user.email,
+        profile: user.value.user.profile,
+        token: user.value.token,
         isAuthenticated: true,
       });
+      router.push({ path: `/catalog` });
     } catch (error) {
       console.log(error);
     }

@@ -38,7 +38,7 @@ const tempStore = temp();
 
 const logout = () => {
   authStore.$logout();
-  router.push("/");
+  router.push(`/login`);
 };
 
 onMounted(() => {
