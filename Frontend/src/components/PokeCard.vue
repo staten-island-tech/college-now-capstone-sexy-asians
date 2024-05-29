@@ -48,13 +48,14 @@ async function gamble() {
 .card {
   width: 20rem;
   height: 200px;
+  margin: 30px 0;
+  padding: 10px;
+  border-radius: 30px;
   background-color: aliceblue;
   color: green;
-  margin: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
   text-transform: uppercase;
 }
 img {
@@ -63,14 +64,18 @@ img {
   object-fit: cover;
 }
 button {
-  margin-top: 10px;
+  cursor: pointer;
   width: 65%;
+  margin-top: 10px;
+  padding: 15px 0;
+  border-radius: 4px;
   background-color: #ffffff;
   color: #080710;
-  padding: 15px 0;
   font-size: 15px;
   font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
+}
+button:hover {
+  background-color: #080710;
+  color: #ffffff;
 }
 </style>
