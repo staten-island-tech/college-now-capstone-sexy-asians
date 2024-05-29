@@ -14,6 +14,25 @@ const generateToken = async function (user) {
   return token;
 };
 
+exports.authCheck = async (req, res, next) => {
+  try {
+    const token = req.header("Authorization").replace("Bearer ", "");
+    const decoded = jwt.verify(token, `${process.env.SECRET}`);
+    const user = await user.findOne({
+      _id: decoded._id,
+    });
+
+    if (!user) {
+      throw new Error();
+    }
+    req.token = token;
+    req.user = user; //route hanlder now will not have to fetch the user account
+    next();
+  } catch (e) {
+    res.status(401).send({ error: "Please authenticate." });
+  }
+};
+
 exports.register = async (req, res) => {
   if (!req.body.email || !req.body.password) {
     console.log(req.body.email);
@@ -39,8 +58,8 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const email = req.body.email;
-    const password = req.body.password;
+    let email = req.body.email;
+    let password = req.body.password;
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -62,10 +81,10 @@ exports.login = async (req, res) => {
 
 exports.updateCollection = async (req, res, next) => {
   try {
-    const email = req.body.email;
-    const user = await User.findOne({ email });
+    let email = req.body.email;
+    let user = await User.findOne({ email });
 
-    let collection = user.collection;
+    user.collection = req.body.collection;
 
     await user.save();
     res.json({ user });
@@ -74,24 +93,6 @@ exports.updateCollection = async (req, res, next) => {
   }
 };
 
-exports.authCheck = async (req, res, next) => {
-  try {
-    const token = req.header("Authorization").replace("Bearer ", "");
-    const decoded = jwt.verify(token, `${process.env.SECRET}`);
-    const user = await user.findOne({
-      _id: decoded._id,
-    });
-
-    if (!user) {
-      throw new Error();
-    }
-    req.token = token;
-    req.user = user; //route hanlder now will not have to fetch the user account
-    next();
-  } catch (e) {
-    res.status(401).send({ error: "Please authenticate." });
-  }
-};
 exports.protected = async (req, res) => {
   let user = req.user;
   try {
