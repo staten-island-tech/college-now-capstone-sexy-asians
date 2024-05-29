@@ -1,10 +1,8 @@
 <template>
   <div class="card">
     <h3>{{ id }}</h3>
-    <h2>{{ pokemon.name }}</h2>
-    <br />
-    <router-link :to="pkmnPath">View Details</router-link>
-    <button @click.prevent="gamble">Add to Gamble</button>
+    <router-link class="link" :to="pkmnPath">{{ pokemon.name }}</router-link>
+    <button @click.prevent="gamble">Add to Hunting List</button>
   </div>
 </template>
 
@@ -47,15 +45,24 @@ async function gamble() {
 <style scoped>
 .card {
   width: 20rem;
-  height: 200px;
+  margin: 30px 0;
+  padding: 1.75rem;
+  border-radius: 30px;
   background-color: aliceblue;
   color: green;
-  margin: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
   text-transform: uppercase;
+}
+.link {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
 img {
   width: 100%;
@@ -63,14 +70,18 @@ img {
   object-fit: cover;
 }
 button {
+  cursor: pointer;
+  width: 60%;
   margin-top: 10px;
-  width: 65%;
+  padding: 15px 0;
+  border-radius: 4px;
   background-color: #ffffff;
   color: #080710;
-  padding: 15px 0;
   font-size: 15px;
   font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
+}
+button:hover {
+  background-color: #080710;
+  color: #ffffff;
 }
 </style>

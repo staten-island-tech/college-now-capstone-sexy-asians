@@ -6,6 +6,7 @@ import Catalog from "../views/CatalogView.vue";
 import PokemonData from "@/views/PokemonData.vue";
 import User from "@/views/UserView.vue";
 import Collection from "@/views/CollectionView.vue";
+import { auth } from "@/stores/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +17,7 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: "/",
+      path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
     },
@@ -41,6 +42,15 @@ const router = createRouter({
       component: Collection,
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === `dashboard`) return next();
+  if (to.name === `catalog`) return next();
+  if (to.name !== `login` && !auth().isAuthenticated)
+    alert(`You are not logged in. Redirecting to login page.`),
+      next({ name: `login` });
+  else return next();
 });
 
 export default router;

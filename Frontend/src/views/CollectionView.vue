@@ -1,34 +1,30 @@
 <template>
   <div class="collection-container">
-    <h1>My AMAZING Pokémon BentoBox</h1>
+    <div v-if="tempStore.collection.length > 0" class="container">
+      <h1>My AMAZING Pokémon Trafficking Van</h1>
 
-    <div v-if="tempStore.collection.length > 0" class="pokemon-grid">
-      <div
-        v-for="pkmn in tempStore.collection"
-        :key="pkmn.name"
-        class="pokemon-card"
-      >
-        <img :src="pkmn.image" alt="pokemon image" class="pokemon-image" />
-        <div class="pokemon-info">
-          <h2>{{ pkmn.name }}</h2>
+      <button>Attempt to Hunt these creature</button>
+
+      <div class="pokemon-grid">
+        <div
+          v-for="pkmn in tempStore.collection"
+          :key="pkmn.name"
+          class="pokemon-card"
+        >
+          <img :src="pkmn.image" alt="pokemon image" class="pokemon-image" />
+          <div class="pokemon-info">
+            <h2>{{ pkmn.name }}</h2>
+          </div>
         </div>
       </div>
     </div>
     <div v-else>
       <p class="empty-message">
-        You got no pokemon in your box. Please go to the catalog to scout some
-        pokemons.
+        There are no creatures in your basement. Go touch grass and hunt them.
       </p>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: "CollectionView",
-  components: {},
-};
-</script>
 
 <script setup>
 import { temp } from "@/stores/temp";
@@ -48,31 +44,32 @@ onMounted(() => {
 
 <style scoped>
 .collection-container {
+  margin-top: 5rem;
+  padding: 2rem;
+}
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
 }
-
 .pokemon-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 2rem;
 }
-
 .pokemon-card {
-  background-color: #f0f0f0;
+  background-color: #073947;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .pokemon-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
-
 .pokemon-info {
   padding: 1rem;
 }
@@ -85,5 +82,17 @@ h2 {
 .empty-message {
   font-size: 1.2rem;
   text-align: center;
+}
+
+button {
+  cursor: pointer;
+  width: 18rem;
+  margin: 2rem;
+  padding: 15px 0;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #080710;
+  font-size: 15px;
+  font-weight: 600;
 }
 </style>
