@@ -9,11 +9,11 @@
 <script setup>
 import { computed } from "vue";
 import { auth } from "@/stores/auth";
-import { temp } from "@/stores/temp";
+import { list } from "@/stores/list";
 import router from "@/router";
 
 const authStore = auth();
-const tempStore = temp();
+const listStore = list();
 
 const props = defineProps({
   pokemon: Object,
@@ -29,7 +29,7 @@ async function gamble() {
   } else {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${props.id}`);
     const data = await res.json();
-    tempStore.collection.push({
+    listStore.collection.push({
       name: data.name,
       image: data.sprites.front_default,
       height: data.height,

@@ -3,7 +3,7 @@
     <div v-if="tempStore.collection.length > 0" class="container">
       <h1>My AMAZING Pokémon Trafficking Van</h1>
 
-      <button>Attempt to Hunt these creature</button>
+      <button @click.prevent="hunt">Attempt to Hunt these creature</button>
 
       <div class="pokemon-grid">
         <div
@@ -27,11 +27,37 @@
 </template>
 
 <script setup>
-import { temp } from "@/stores/temp";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import gsap from "gsap";
+import { collection } from "@/stores/collection";
+import { list } from "@/stores/list";
 
-const tempStore = temp();
+const collectionStore = collection();
+const listStore = list();
+
+const hunt = () => {
+  const chance = ref([]);
+  for (let i = 0; i < listStore.collection.length; i++) {
+    chance.value[i] = i + 1;
+  }
+
+  listStore.collection.forEach((c) => {
+    if (Math.random(chance.value === 1)) {
+      collectionStore.$patch({
+        collection: {
+          name: c.name,
+          image: c.image,
+          height: c.height,
+          weight: c.weight,
+          type: c.type,
+          abilities: c.abilities,
+          moves: c.moves,
+        },
+      });
+    }
+  });
+  listStore.collection = [];
+};
 
 onMounted(() => {
   gsap.fromTo(

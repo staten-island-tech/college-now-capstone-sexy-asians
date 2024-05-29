@@ -7,7 +7,7 @@ import App from "./App.vue";
 import router from "./router";
 import { auth } from "./stores/auth";
 import { collection } from "./stores/collection";
-import { temp } from "./stores/temp";
+import { list } from "./stores/list";
 
 const app = createApp(App);
 
@@ -18,4 +18,4 @@ app.mount("#app");
 
 auth();
 collection();
-temp();
+list();

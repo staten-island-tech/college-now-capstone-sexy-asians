@@ -13,7 +13,7 @@
     <div v-if="tempStore.collection.length > 0" class="collection">
       <h3>Your Collection</h3>
       <ul class="pokemon-list">
-        <li v-for="pkmn in tempStore.collection" :key="pkmn.name">
+        <li v-for="pkmn in listStore.collection" :key="pkmn.name">
           {{ pkmn.name }}
           <img :src="pkmn.image" alt="pokemon image" width="50" />
         </li>
@@ -28,13 +28,13 @@
 
 <script setup>
 import { auth } from "@/stores/auth";
-import { temp } from "@/stores/temp";
+import { list } from "@/stores/list";
 import router from "@/router";
 import { onMounted } from "vue";
 import gsap from "gsap";
 
 const authStore = auth();
-const tempStore = temp();
+const listStore = list();
 
 const logout = () => {
   authStore.$logout();

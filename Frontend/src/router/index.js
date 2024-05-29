@@ -5,7 +5,7 @@ import Dashboard from "../views/DashboardView.vue";
 import Catalog from "../views/CatalogView.vue";
 import PokemonData from "@/views/PokemonData.vue";
 import User from "@/views/UserView.vue";
-import Collection from "@/views/CollectionView.vue";
+import HuntingList from "@/views/ListView.vue";
 import { auth } from "@/stores/auth";
 
 const router = createRouter({
@@ -37,9 +37,9 @@ const router = createRouter({
       component: User,
     },
     {
-      path: "/user/collection",
-      name: "collection",
-      component: Collection,
+      path: "/user/list",
+      name: "list",
+      component: HuntingList,
     },
   ],
 });
