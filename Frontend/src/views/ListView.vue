@@ -54,6 +54,13 @@ const hunt = () => {
           moves: c.moves,
         },
       });
+      /* try {
+        const update = async () => {
+          const res = await fetch(`http://localhost:4000/`)
+        }
+      } catch (error) {
+        console.log(error)
+      } */
     }
   });
   listStore.collection = [];

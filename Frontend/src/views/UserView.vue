@@ -8,9 +8,11 @@
       />
     </div>
 
-    <h2>Welcome, {{ authStore.email }}!</h2>
+    <h2>
+      Welcome, {{ authStore.email.slice(0, authStore.email.indexOf("@")) }}!
+    </h2>
 
-    <div v-if="tempStore.collection.length > 0" class="collection">
+    <div v-if="listStore.collection.length > 0" class="collection">
       <h3>Your Collection</h3>
       <ul class="pokemon-list">
         <li v-for="pkmn in listStore.collection" :key="pkmn.name">
@@ -20,18 +22,21 @@
       </ul>
     </div>
     <div v-else>
-      <p>Your collection is empty. Start gambling in the Catalog!</p>
+      <p>
+        Your basement is empty. Find creatures to hunt in the
+        <router-link to="/catalog">Catalog!</router-link>
+      </p>
     </div>
     <button @click="logout" class="logout-button">Logout</button>
   </div>
 </template>
 
 <script setup>
+import { onMounted } from "vue";
+import router from "@/router";
+import gsap from "gsap";
 import { auth } from "@/stores/auth";
 import { list } from "@/stores/list";
-import router from "@/router";
-import { onMounted } from "vue";
-import gsap from "gsap";
 
 const authStore = auth();
 const listStore = list();
@@ -52,12 +57,13 @@ onMounted(() => {
 
 <style scoped>
 .user-profile {
+  min-height: 100vh;
+  margin-top: 5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 2rem;
 }
 
 .avatar-container {
@@ -98,6 +104,7 @@ h2 {
 }
 
 .logout-button {
+  margin-top: 5rem;
   padding: 10px 20px;
   background-color: #e74c3c;
   color: white;

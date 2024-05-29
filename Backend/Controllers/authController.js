@@ -39,8 +39,8 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    let email = req.body.email;
-    let password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -57,6 +57,20 @@ exports.login = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json("user not found");
+  }
+};
+
+exports.updateCollection = async (req, res, next) => {
+  try {
+    const email = req.body.email;
+    const user = await User.findOne({ email });
+
+    let collection = user.collection;
+
+    await user.save();
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json(error);
   }
 };
 
