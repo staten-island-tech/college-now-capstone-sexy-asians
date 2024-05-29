@@ -2,7 +2,7 @@
   <div class="card">
     <h3>{{ id }}</h3>
     <router-link class="link" :to="pkmnPath">{{ pokemon.name }}</router-link>
-    <button @click.prevent="gamble">Add to Gamble</button>
+    <button @click.prevent="gamble">Add to Hunting List</button>
   </div>
 </template>
 
