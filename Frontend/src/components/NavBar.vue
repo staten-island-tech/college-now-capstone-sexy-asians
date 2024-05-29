@@ -2,9 +2,10 @@
   <header class="nav-bar">
     <div class="nav-container">
       <div class="left">
-        <router-link to="/" class="brand">PokeGacha</router-link>
+        <router-link to="/dashboard" class="brand">PokeGacha</router-link>
         <router-link to="/catalog" class="nav">Catalog</router-link>
         <router-link to="/user/collection" class="nav">Collection</router-link>
+        <router-link to="/user" class="nav">User</router-link>
       </div>
       <nav class="right">
         <router-link v-if="!authStore.isAuthenticated" to="/login" class="login"

@@ -23,13 +23,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "CollectionView",
-  components: {},
-};
-</script>
-
 <script setup>
 import { temp } from "@/stores/temp";
 import { onMounted } from "vue";
