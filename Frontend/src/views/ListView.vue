@@ -1,13 +1,13 @@
 <template>
   <div class="collection-container">
-    <div v-if="tempStore.collection.length > 0" class="container">
+    <div v-if="listStore.collection.length > 0" class="container">
       <h1>My AMAZING Pokémon Trafficking Van</h1>
 
       <button @click.prevent="hunt">Attempt to Hunt these creature</button>
 
       <div class="pokemon-grid">
         <div
-          v-for="pkmn in tempStore.collection"
+          v-for="pkmn in listStore.collection"
           :key="pkmn.name"
           class="pokemon-card"
         >
