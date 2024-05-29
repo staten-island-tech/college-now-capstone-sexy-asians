@@ -2,7 +2,7 @@
   <div class="user-profile">
     <div class="avatar-container">
       <img
-        src="https://media.discordapp.net/attachments/917589799299321897/1243267103499358228/image.png?ex=6650da38&is=664f88b8&hm=075f9567100f92039bac3766fffb1c014c04e4df26886ae72d3c8834c66d10b6&=&format=webp&quality=lossless&width=139&height=166"
+        src="https://media.discordapp.net/attachments/917589799299321897/1245178203836911656/image.png?ex=6657ce12&is=66567c92&hm=d180c24e49f646b4f95bbd12e7c42c03692f85ad3b13fa9a8f089d40a5fc8d2b&=&format=webp&quality=lossless&width=528&height=464"
         alt="User Avatar"
         class="avatar"
       />
