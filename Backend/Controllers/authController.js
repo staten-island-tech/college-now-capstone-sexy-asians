@@ -35,11 +35,8 @@ exports.authCheck = async (req, res, next) => {
 
 exports.register = async (req, res) => {
   if (!req.body.email || !req.body.password) {
-    console.log(req.body.email);
-    console.log(req.body.password);
     res.json({ success: false, msg: "Please pass email and password." });
   } else {
-    console.log(req.body.email);
     let newUser = new User({
       email: req.body.email,
       password: req.body.password,
@@ -84,10 +81,19 @@ exports.updateCollection = async (req, res, next) => {
     let email = req.body.email;
     let user = await User.findOne({ email });
 
-    user.collection = req.body.collection;
+    user.collection = {
+      name: req.body.name,
+      image: req.body.image,
+      height: req.body.height,
+      weight: req.body.weight,
+      type: req.body.type,
+      abilities: req.body.abilities,
+      moves: req.body.moves,
+    };
 
     await user.save();
     res.json({ user });
+    next();
   } catch (error) {
     res.status(500).json(error);
   }

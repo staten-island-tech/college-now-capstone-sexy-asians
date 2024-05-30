@@ -22,7 +22,17 @@ const userSchema = new Schema({
       },
     },
   ],
-  collection: [],
+  collection: [
+    {
+      name: String,
+      image: String,
+      height: Number,
+      weight: Number,
+      type: [],
+      abilities: [],
+      moves: [],
+    },
+  ],
 });
 userSchema.pre("save", async function (next) {
   const user = this;

@@ -74,10 +74,13 @@
 
 <script setup>
 import { ref } from "vue";
-import { auth } from "@/stores/auth";
 import router from "@/router";
+import { auth } from "@/stores/auth";
+import { collection } from "@/stores/collection";
 
 const authStore = auth();
+const collectionStore = collection();
+
 async function login() {
   try {
     const req = {
@@ -105,6 +108,19 @@ async function login() {
       token: user.value.token,
       isAuthenticated: true,
     });
+    collectionStore.$patch({
+      collection: [
+        {
+          name: user.value.user.collection.name,
+          image: user.value.user.collection.image,
+          height: user.value.user.collection.height,
+          weight: user.value.user.collection.weight,
+          type: user.value.user.collection.type,
+          abilities: user.value.user.collection.abilities,
+          moves: user.value.user.collection.moves,
+        },
+      ],
+    });
     router.push({ path: `/catalog` });
   } catch (error) {
     console.log(error);
@@ -123,28 +139,22 @@ async function signup() {
   if (password.value !== confirm.value) {
     alert("Passwords do not match");
   } else {
-    console.log(email, password);
     try {
-      let res = await fetch(
-        "http://localhost:4000/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email.value,
-            password: password.value,
-          }),
+      let res = await fetch("http://localhost:4000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        console.log("1")
-      );
+        body: JSON.stringify({
+          email: email.value,
+          password: password.value,
+        }),
+      });
       let user = ref(await res.json());
-      console.log(user.value);
       authStore.$patch({
-        id: user.value.user._id,
-        email: user.value.user.email,
-        profile: user.value.user.profile,
+        id: user.value.newUser._id,
+        email: user.value.newUser.email,
+        profile: user.value.newUser.profile,
         token: user.value.token,
         isAuthenticated: true,
       });

@@ -4,7 +4,7 @@
       <div class="left">
         <router-link to="/dashboard" class="brand nav">PokeGacha</router-link>
         <router-link to="/catalog" class="nav">Catalog</router-link>
-        <router-link to="/user/list" class="nav">Collection</router-link>
+        <router-link to="/user/list" class="nav">Hunting List</router-link>
       </div>
       <nav class="right">
         <router-link v-if="!authStore.isAuthenticated" to="/login" class="login"

@@ -29,9 +29,11 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import gsap from "gsap";
+import { auth } from "@/stores/auth";
 import { collection } from "@/stores/collection";
 import { list } from "@/stores/list";
 
+const authStore = auth();
 const collectionStore = collection();
 const listStore = list();
 
@@ -54,13 +56,29 @@ const hunt = () => {
           moves: c.moves,
         },
       });
-      /* try {
-        const update = async () => {
-          const res = await fetch(`http://localhost:4000/`)
+
+      async () => {
+        try {
+          await fetch(`http://localhost:4000/updateCollection`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: authStore.email,
+              name: c.name,
+              image: c.image,
+              height: c.height,
+              weight: c.weight,
+              type: c.type,
+              abilities: c.abilities,
+              moves: c.moves,
+            }),
+          });
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error)
-      } */
+      };
     }
   });
   listStore.collection = [];
