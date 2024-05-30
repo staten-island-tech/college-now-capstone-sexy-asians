@@ -76,29 +76,28 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.updateCollection = async (req, res, next) => {
+exports.updateCollection = async (req, res) => {
   try {
     let email = req.body.email;
+    let collection = req.body.collection;
     let user = await User.findOne({ email });
+    user.collection = collection;
 
-    if (!user) {
-      throw new Error("Please login");
-    }
-
-    let newCollection = new User.collection({
-      name: req.body.name,
-      image: req.body.image,
-      height: req.body.height,
-      weight: req.body.weight,
-      type: req.body.type,
-      abilities: req.body.abilities,
-      moves: req.body.moves,
-    });
-
-    await newCollection.save();
-    next();
+    await user.save();
   } catch (error) {
     res.status(500).json(error);
+  }
+};
+exports.deleteCollection = async (req, res) => {
+  try {
+    let pkmn = req.body.collection.name;
+    const shop = await User.findOneAndDelete({ pkmn });
+    if (!shop) {
+      res.status(404).send("Pokemon killed");
+    }
+    res.send(`You killed your pokemon and removed it from your collection`);
+  } catch (error) {
+    console.log(error);
   }
 };
 

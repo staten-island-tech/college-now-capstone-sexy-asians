@@ -37,50 +37,37 @@ const authStore = auth();
 const collectionStore = collection();
 const listStore = list();
 
-const hunt = () => {
-  const chance = ref([]);
-  for (let i = 0; i < listStore.collection.length; i++) {
-    chance.value[i] = i + 1;
-  }
+const hunt = async () => {
+  const chance = ref([1, 2, 3, 4]);
 
   listStore.collection.forEach((c) => {
-    if (Math.random(chance.value === 1)) {
-      collectionStore.$patch({
-        collection: {
-          name: c.name,
-          image: c.image,
-          height: c.height,
-          weight: c.weight,
-          type: c.type,
-          abilities: c.abilities,
-          moves: c.moves,
-        },
+    if (Math.floor(Math.random() * chance.value.length) === 1) {
+      collectionStore.collection.push({
+        name: c.name,
+        image: c.image,
+        height: c.height,
+        weight: c.weight,
+        type: c.type,
+        abilities: c.abilities,
+        moves: c.moves,
       });
-
-      async () => {
-        try {
-          await fetch(`http://localhost:4000/updateCollection`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: authStore.email,
-              name: c.name,
-              image: c.image,
-              height: c.height,
-              weight: c.weight,
-              type: c.type,
-              abilities: c.abilities,
-              moves: c.moves,
-            }),
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      };
     }
   });
+  try {
+    await fetch(`http://localhost:4000/updateCollection`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: authStore.email,
+        collection: collectionStore.collection,
+      }),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
   listStore.collection = [];
 };
 

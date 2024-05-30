@@ -108,19 +108,17 @@ async function login() {
       token: user.value.token,
       isAuthenticated: true,
     });
-    collectionStore.$patch({
-      collection: [
-        {
-          name: user.value.user.collection.name,
-          image: user.value.user.collection.image,
-          height: user.value.user.collection.height,
-          weight: user.value.user.collection.weight,
-          type: user.value.user.collection.type,
-          abilities: user.value.user.collection.abilities,
-          moves: user.value.user.collection.moves,
-        },
-      ],
-    });
+    if (user.value.user.collection.name !== undefined) {
+      collectionStore.collection.push({
+        name: user.value.user.collection.name,
+        image: user.value.user.collection.image,
+        height: user.value.user.collection.height,
+        weight: user.value.user.collection.weight,
+        type: user.value.user.collection.type,
+        abilities: user.value.user.collection.abilities,
+        moves: user.value.user.collection.moves,
+      });
+    }
     router.push({ path: `/catalog` });
   } catch (error) {
     console.log(error);
