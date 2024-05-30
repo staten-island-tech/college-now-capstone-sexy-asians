@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <h3>{{ id }}</h3>
+    <img :src="pokemonImage" alt="pokemon image" class="pokemon-image" />
     <router-link class="link" :to="pkmnPath">{{ pokemon.name }}</router-link>
     <button @click.prevent="gamble">Add to Hunting List</button>
   </div>
@@ -21,6 +22,9 @@ const props = defineProps({
 });
 const pkmnPath = computed(() => {
   return `/pkmn/${props.id}`;
+});
+const pokemonImage = computed(() => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`;
 });
 
 async function gamble() {
@@ -55,6 +59,11 @@ async function gamble() {
   align-items: center;
   text-transform: uppercase;
 }
+.pokemon-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
 .link {
   display: block;
   font-size: 1.17em;
@@ -63,11 +72,6 @@ async function gamble() {
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
-}
-img {
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
 }
 button {
   cursor: pointer;
