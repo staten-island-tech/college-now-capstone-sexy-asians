@@ -10,6 +10,9 @@ let corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 //takes the raw requests and turns them into usable properties on req.body
 app.use(express.json());
 app.use(express.urlencoded());

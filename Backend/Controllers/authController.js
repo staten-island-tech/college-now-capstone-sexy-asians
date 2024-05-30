@@ -81,7 +81,11 @@ exports.updateCollection = async (req, res, next) => {
     let email = req.body.email;
     let user = await User.findOne({ email });
 
-    user.collection = {
+    if (!user) {
+      throw new Error("Please login");
+    }
+
+    let newCollection = new User.collection({
       name: req.body.name,
       image: req.body.image,
       height: req.body.height,
@@ -89,10 +93,9 @@ exports.updateCollection = async (req, res, next) => {
       type: req.body.type,
       abilities: req.body.abilities,
       moves: req.body.moves,
-    };
+    });
 
-    await user.save();
-    res.json({ user });
+    await newCollection.save();
     next();
   } catch (error) {
     res.status(500).json(error);
